@@ -1,0 +1,29 @@
+table {
+    font-family: 'Tahoma', Tahoma, Geneva, Verdana, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin: 20px auto;
+    color: white;
+  }
+  
+  td,
+  th {
+    border: 1px solid rgb(255, 255, 25);
+    text-align: left;
+    padding: 8px;
+  }
+  
+  th {
+    background-color: grey;
+  }
+
+  body{
+    background: rgb(0, 0, 0);
+    color: white;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Tahoma', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+  
