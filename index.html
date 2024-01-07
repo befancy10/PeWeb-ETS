@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login/Register of Snake Game</title>
+    <link rel="stylesheet" href="loginregister.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    />
+  </head>
+  <body>
+    <div class="wrap">
+      <form id="authForm">
+        <h1>Login</h1>
+
+        <div class="inputbox">
+          <input type="text" placeholder="Email" id="loginEmail" required />
+          <i class="bx bxs-user-circle"></i>
+        </div>
+
+        <div class="inputbox">
+          <input
+            type="password"
+            placeholder="Password"
+            id="loginPassword"
+            required
+          />
+          <i class="bx bx-key"></i>
+        </div>
+
+        <div id="container">
+          <button type="submit" class="btn" id="loginButton">Login</button>
+        </div>
+
+        <p>Don't have an account?</p>
+        <a href="register.html">Register here!</a>
+      </form>
+    </div>
+
+    <script src="loginregister.js"></script>
+  </body>
+</html>
