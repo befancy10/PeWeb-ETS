@@ -8,14 +8,14 @@ var snake = {
     x: 160,
     y: 160,
 
-    // snake velocity. moves one grid length every frame in either the x or y direction
+    // kecepatan ular. Memindahkan satu panjang kisi setiap frame ke arah x atau y
     dx: grid,
     dy: 0,
 
-    // keep track of all grids the snake body occupies
+    // melacak semua grid yang ditempati tubuh ular
     cells: [],
 
-    // length of the snake. grows when eating an apple
+    // panjang ular. tumbuh saat makan apel
     maxCells: 4
 };
 var apple = {
@@ -23,8 +23,7 @@ var apple = {
     y: 320
 };
 
-// get random whole numbers in a specific range
-// @see https://stackoverflow.com/a/1527820/2124254
+// Dapatkan bilangan bulat acak dalam rentang tertentu
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -33,7 +32,7 @@ function getRandomInt(min, max) {
 function loop() {
     requestAnimationFrame(loop);
 
-    // slow game loop to 15 fps instead of 60 (60/15 = 4)
+    // memperlambat Game Loop ke 15 fps, bukan 60 (60/15 = 4)
     if (++count < 4) {
         return;
     }
@@ -41,11 +40,11 @@ function loop() {
     count = 0;
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // move snake by it's velocity
+    // menggerakkan ular berdasarkan kecepatan
     snake.x += snake.dx;
     snake.y += snake.dy;
 
-    // wrap snake position horizontally on edge of screen
+    //  Bungkus posisi ular secara horizontal di tepi layar
     if (snake.x < 0) {
         snake.x = canvas.width - grid;
     }
@@ -53,7 +52,7 @@ function loop() {
         snake.x = 0;
     }
 
-    // wrap snake position vertically on edge of screen
+    // Bungkus posisi ular secara vertikal di tepi layar
     if (snake.y < 0) {
         snake.y = canvas.height - grid;
     }
@@ -61,38 +60,38 @@ function loop() {
         snake.y = 0;
     }
 
-    // keep track of where snake has been. front of the array is always the head
+    // Melacak di mana ular berada. depan array selalu kepala
     snake.cells.unshift({ x: snake.x, y: snake.y });
 
-    // remove cells as we move away from them
+    // Hapus sel saat menjauh darinya
     if (snake.cells.length > snake.maxCells) {
         snake.cells.pop();
     }
 
-    // draw apple
+    // gambar apel sebagai makananan ular
     context.fillStyle = 'red';
     context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
 
-    // draw snake one cell at a time
+    // Gambar ular satu sel pada satu waktu
     context.fillStyle = 'green';
     snake.cells.forEach(function (cell, index) {
 
-        // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
+        // Menggambar 1 px lebih kecil dari grid menciptakan efek grid di tubuh ular sehingga Anda dapat melihat berapa panjangnya
         context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
 
-        // snake ate apple
+        // saat ular makan apel
         if (cell.x === apple.x && cell.y === apple.y) {
             snake.maxCells++;
 
-            // canvas is 400x400 which is 25x25 grids 
+            // karna canvas ukuran 400x400 berarti ada 25x25 grids 
             apple.x = getRandomInt(0, 25) * grid;
             apple.y = getRandomInt(0, 25) * grid;
         }
 
-        // check collision with all cells after this one (modified bubble sort)
+        // Periksa tabrakan dengan semua sel setelah nya (modified bubble sort)
         for (var i = index + 1; i < snake.cells.length; i++) {
 
-            // snake occupies same space as a body part. reset game
+            // Ular menempati ruang yang sama dengan bagian tubuh, reset game
             if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
                 snake.x = 160;
                 snake.y = 160;
@@ -111,7 +110,7 @@ function loop() {
     });
 }
 
-// listen to keyboard events to move the snake
+// listener keyboard events untuk menggerakkan ular
 document.addEventListener('keydown', function (e) {
 
     // left arrow key
@@ -136,5 +135,5 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-// start the game
+// mulai game
 requestAnimationFrame(loop);
